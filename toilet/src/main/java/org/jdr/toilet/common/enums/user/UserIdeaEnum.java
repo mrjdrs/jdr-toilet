@@ -1,5 +1,6 @@
-package org.jdr.toilet.common.enums;
+package org.jdr.toilet.common.enums.user;
 
+import org.jdr.toilet.common.enums.pit.PitTypeEnum;
 import org.jdr.toilet.service.bo.PitBO;
 import lombok.Getter;
 

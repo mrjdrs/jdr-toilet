@@ -1,64 +1,85 @@
 USE jdr_toilet;
 
 ##### init t_toilet_user #####
-INSERT INTO t_toilet_user(name, sex, age, type)
-  VALUE ('小明', 0, 33, 0),
-  ('小花', 1, 18, 0),
-  ('小华', 0, 12, 0),
-  ('小军', 1, 58, 0),
-  ('路人甲', 0, 33, 1),
-  ('路人已', 1, 33, 1),
-  ('路人丙', 1, 33, 2),
-  ('路人丁', 0, 33, 2);
+INSERT INTO t_toilet_user(name, sex, mobile, type, status)
+  VALUE ('小明', 0, '15200001111', 0, 0),
+  ('小花', 1, '15200002222', 0, 0),
+  ('小华', 0, '15200003333', 0, 0),
+  ('小军', 1, '15200004444', 0, 0),
+  ('路人甲', 0, '15200005555', 1, 0),
+  ('路人已', 1, '15200006666', 1, 0),
+  ('路人丙', 1, '15200007777', 2, 0),
+  ('路人丁', 0, '15200008888', 2, 0);
 ##### init t_toilet_user #####
 
 ##### init t_toilet_toilet #####
-INSERT INTO t_toilet_toilet(type, floor, admin)
-  VALUE (0, 1, 8),
-  (0, 2, 8),
-  (1, 1, 7),
-  (1, 2, 7);
+INSERT INTO t_toilet_toilet(type, floor, admin_user_id, status)
+  VALUE (0, 1, 8, 0),
+  (0, 2, 8, 0),
+  (1, 1, 7, 0),
+  (1, 2, 7, 0);
 ##### init t_toilet_toilet #####
 
 ##### init t_toilet_pit #####
-# 各类型坑位，一楼二楼各两个坑
-INSERT INTO t_toilet_pit(type, parent_toilet)
-  VALUE (0, 1),
-  (1, 1),
-  (2, 1),
-  (3, 1),
-  (4, 1),
-  (5, 1),
-  (0, 1),
-  (1, 1),
-  (2, 1),
-  (3, 1),
-  (4, 1),
-  (5, 1),
-  (0, 2),
-  (1, 2),
-  (2, 2),
-  (3, 2),
-  (4, 2),
-  (5, 2),
-  (0, 2),
-  (1, 2),
-  (2, 2),
-  (3, 2),
-  (4, 2),
-  (5, 2);
+# 各厕所蹲式、马桶2个（女厕所个4个），便池4个（女厕所无便池）
+INSERT INTO t_toilet_pit(type, parent_toilet_id, status)
+  VALUE (0, 1, 0),
+  (0, 1, 0),
+  (1, 1, 0),
+  (1, 1, 0),
+  (2, 1, 0),
+  (2, 1, 0),
+  (2, 1, 0),
+  (2, 1, 0),
+  (0, 2, 0),
+  (0, 2, 0),
+  (1, 2, 0),
+  (1, 2, 0),
+  (2, 2, 0),
+  (2, 2, 0),
+  (2, 2, 0),
+  (2, 2, 0),
+  (0, 3, 0),
+  (0, 3, 0),
+  (0, 3, 0),
+  (0, 3, 0),
+  (1, 3, 0),
+  (1, 3, 0),
+  (1, 3, 0),
+  (1, 3, 0),
+  (0, 4, 0),
+  (0, 4, 0),
+  (0, 4, 0),
+  (0, 4, 0),
+  (1, 4, 0),
+  (1, 4, 0),
+  (1, 4, 0),
+  (1, 4, 0);
 ##### init t_toilet_pit #####
 
-##### init t_toilet_paper_towel #####
-INSERT INTO t_toilet_paper_towel(type, remaining_quantity, price)
-  VALUE (0, 500, 2.5),
-  (1, 500, 4.5);
-##### init t_toilet_paper_towel #####
+##### init t_toilet_wash_basin #####
+INSERT INTO t_toilet_wash_basin(parent_toilet_id, status)
+  VALUE (1, 0),
+  (1, 0),
+  (2, 0),
+  (2, 0),
+  (3, 0),
+  (3, 0),
+  (4, 0),
+  (4, 0);
+##### init t_toilet_wash_basin #####
 
-##### init t_toilet_wash_basin #####
-INSERT INTO t_toilet_wash_basin(type)
-  VALUE (0),
-  (0),
-  (1),
-  (1);
-##### init t_toilet_wash_basin #####
+##### init t_toilet_product #####
+INSERT INTO t_toilet_product(name, price, stock, product_category_id)
+  VALUE ('我是1号抽纸', 5, 100, 2),
+  ('我是2号抽纸', 8, 100, 2),
+  ('我是1号卷纸', 2.5, 100, 2),
+  ('我是2号抽纸', 3, 100, 2);
+##### init t_toilet_product #####
+
+##### init t_toilet_category #####
+INSERT INTO t_toilet_category(name, parent_category_id)
+  VALUE ('基础产品', -1),
+  ('抽纸', 1),
+  ('卷纸', 1);
+##### init t_toilet_category #####

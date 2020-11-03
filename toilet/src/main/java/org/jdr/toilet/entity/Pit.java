@@ -2,11 +2,11 @@ package org.jdr.toilet.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.jdr.toilet.common.enums.pit.PitStatusEnum;
+import org.jdr.toilet.common.enums.pit.PitTypeEnum;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,23 +23,21 @@ public class Pit extends BaseEntity {
 
     /**
      * 坑位类型
-     * {@link org.jdr.toilet.common.enums.PitTypeEnum}
+     * {@link PitTypeEnum}
      */
     @Column(name = "type")
-    private Integer type;
+    private Integer type = PitTypeEnum.AUTO_SQUAT.getCode();
 
     /**
-     * 所属厕所
+     * 所属厕所id
      */
-    @ManyToOne(targetEntity = Toilet.class)
-    @JoinColumn(name = "parent_toilet", referencedColumnName = "id")
-    private Toilet parentToilet;
+    @Column(name = "parent_toilet_id")
+    private Long parentToiletId = -1L;
 
     /**
-     * 占有用户
+     * 坑位状态
      */
-    @ManyToOne(targetEntity = Toilet.class)
-    @JoinColumn(name = "occupied_user", referencedColumnName = "id")
-    private User occupiedUser;
+    @Column(name = "status")
+    private Integer status = PitStatusEnum.FREEING.getCode();
 
 }

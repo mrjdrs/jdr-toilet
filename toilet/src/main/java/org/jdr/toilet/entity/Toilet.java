@@ -1,14 +1,13 @@
 package org.jdr.toilet.entity;
 
-import org.jdr.toilet.common.enums.ToiletTypeEnum;
+import org.jdr.toilet.common.enums.toilet.ToiletStatusEnum;
+import org.jdr.toilet.common.enums.toilet.ToiletTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -29,19 +28,24 @@ public class Toilet extends BaseEntity {
      * {@link ToiletTypeEnum}
      */
     @Column(name = "type")
-    private Integer type;
+    private Integer type = ToiletTypeEnum.MALE_TOILET.getCode();
 
     /**
      * 厕所楼层
      */
     @Column(name = "floor")
-    private Integer floor;
+    private Integer floor = -1;
 
     /**
      * 管理人
      */
-    @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "admin", referencedColumnName = "id")
-    private User admin;
+    @Column(name = "admin_user_id")
+    private Long adminUserId = -1L;
+
+    /**
+     * 维修中
+     */
+    @Column(name = "status")
+    private Integer status = ToiletStatusEnum.NORMAL.getCode();
 
 }

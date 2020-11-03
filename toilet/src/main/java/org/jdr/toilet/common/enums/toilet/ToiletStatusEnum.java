@@ -1,4 +1,4 @@
-package org.jdr.toilet.common.enums;
+package org.jdr.toilet.common.enums.toilet;
 
 import lombok.Getter;
 
@@ -7,23 +7,23 @@ import lombok.Getter;
  * @date 2020/9/8 11:39
  */
 @Getter
-public enum UserSexEnum {
+public enum ToiletStatusEnum {
 
     /**
-     * 男人
+     * 正常运行
      */
-    MALE(0, "男人"),
+    NORMAL(0, "正常运行"),
 
     /**
-     * 女人
+     * 维修中
      */
-    FEMALE(1, "女人"),
+    REPAIR(1, "维修中"),
     ;
 
     private final int code;
     private final String desc;
 
-    UserSexEnum(int code, String desc) {
+    ToiletStatusEnum(int code, String desc) {
         this.code = code;
         this.desc = desc;
     }

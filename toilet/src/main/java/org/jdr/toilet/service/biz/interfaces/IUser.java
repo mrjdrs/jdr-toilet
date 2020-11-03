@@ -1,6 +1,6 @@
 package org.jdr.toilet.service.biz.interfaces;
 
-import org.jdr.toilet.common.enums.PitTypeEnum;
+import org.jdr.toilet.common.enums.pit.PitTypeEnum;
 import org.jdr.toilet.entity.Toilet;
 import org.jdr.toilet.service.bo.PaperTowelBO;
 import org.jdr.toilet.service.bo.PitBO;

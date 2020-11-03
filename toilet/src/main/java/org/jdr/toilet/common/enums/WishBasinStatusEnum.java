@@ -7,28 +7,23 @@ import lombok.Getter;
  * @date 2020/9/8 11:39
  */
 @Getter
-public enum UserTypeEnum {
+public enum WishBasinStatusEnum {
 
     /**
-     * 普通用户
+     * 正常运行
      */
-    NORMAL(0, "普通用户"),
+    NORMAL(0, "正常运行"),
 
     /**
-     * VIP用户
+     * 维修中
      */
-    VIP(1, "VIP用户"),
-
-    /**
-     * 管理员
-     */
-    ADMINISTRATOR(2, "管理员"),
+    REPAIR(1, "维修中"),
     ;
 
     private final int code;
     private final String desc;
 
-    UserTypeEnum(int code, String desc) {
+    WishBasinStatusEnum(int code, String desc) {
         this.code = code;
         this.desc = desc;
     }

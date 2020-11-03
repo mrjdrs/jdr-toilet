@@ -1,6 +1,6 @@
 package org.jdr.toilet.service.bo;
 
-import org.jdr.toilet.common.enums.PitTypeEnum;
+import org.jdr.toilet.common.enums.pit.PitTypeEnum;
 import lombok.Data;
 
 import java.util.Arrays;
@@ -26,8 +26,7 @@ public class PitBO {
      * 获取大便坑位
      */
     public static List<PitTypeEnum> getStoolPit() {
-        return Arrays.asList(PitTypeEnum.AUTO_SQUAT, PitTypeEnum.MANUAL_SQUAT, PitTypeEnum.AUTO_TOILET,
-                PitTypeEnum.MANUAL_TOILET);
+        return Arrays.asList(PitTypeEnum.AUTO_SQUAT, PitTypeEnum.AUTO_TOILET);
     }
 
 }

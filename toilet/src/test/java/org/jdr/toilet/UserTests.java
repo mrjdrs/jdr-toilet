@@ -2,7 +2,7 @@ package org.jdr.toilet;
 
 import lombok.extern.slf4j.Slf4j;
 import net.dreamlu.mica.core.utils.$;
-import org.jdr.toilet.common.enums.PitTypeEnum;
+import org.jdr.toilet.common.enums.pit.PitTypeEnum;
 import org.jdr.toilet.entity.Toilet;
 import org.jdr.toilet.service.biz.interfaces.IUser;
 import org.junit.Test;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

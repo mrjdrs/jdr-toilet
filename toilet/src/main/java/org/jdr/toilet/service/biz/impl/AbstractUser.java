@@ -1,7 +1,8 @@
 package org.jdr.toilet.service.biz.impl;
 
-import net.dreamlu.mica.core.utils.$;
-import org.jdr.toilet.common.enums.PitTypeEnum;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.jdr.toilet.common.enums.pit.PitTypeEnum;
 import org.jdr.toilet.common.strategy.UserIdea;
 import org.jdr.toilet.entity.Toilet;
 import org.jdr.toilet.repository.ToiletRepoService;
@@ -9,8 +10,6 @@ import org.jdr.toilet.service.biz.interfaces.IUser;
 import org.jdr.toilet.service.bo.PaperTowelBO;
 import org.jdr.toilet.service.bo.PitBO;
 import org.jdr.toilet.service.bo.WashBasinBO;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

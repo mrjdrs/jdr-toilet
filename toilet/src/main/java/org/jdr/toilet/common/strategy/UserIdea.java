@@ -1,6 +1,6 @@
 package org.jdr.toilet.common.strategy;
 
-import org.jdr.toilet.common.enums.UserIdeaEnum;
+import org.jdr.toilet.common.enums.user.UserIdeaEnum;
 
 import java.util.Random;
 
