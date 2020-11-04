@@ -2,6 +2,9 @@ package org.jdr.toilet.common.enums.pit;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author zhoude
  * @date 2020/9/8 11:39
@@ -36,6 +39,12 @@ public enum PitStatusEnum {
     PitStatusEnum(int code, String desc) {
         this.code = code;
         this.desc = desc;
+    }
+
+    public static List<Integer> convertCode(List<PitStatusEnum> pitTypes) {
+        List<Integer> result = new ArrayList<>(pitTypes.size());
+        pitTypes.forEach(pit -> result.add(pit.getCode()));
+        return result;
     }
 
 }

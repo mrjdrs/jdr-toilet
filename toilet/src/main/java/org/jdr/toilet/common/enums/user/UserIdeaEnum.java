@@ -1,8 +1,8 @@
 package org.jdr.toilet.common.enums.user;
 
-import org.jdr.toilet.common.enums.pit.PitTypeEnum;
-import org.jdr.toilet.service.bo.PitBO;
 import lombok.Getter;
+import org.jdr.toilet.common.enums.pit.PitTypeEnum;
+import org.jdr.toilet.service.domain.PitDomain;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -37,6 +37,9 @@ public enum UserIdeaEnum {
     private final int code;
     private final String desc;
 
+    /**
+     * 定义用户想法与想法对应的坑位集合
+     */
     private static final Map<UserIdeaEnum, List<PitTypeEnum>> PITS = new HashMap<>();
 
 //  constructor
@@ -48,14 +51,17 @@ public enum UserIdeaEnum {
 
 //  method
 
+    /**
+     * 初始化用户想法与想法对应的坑位集合
+     */
     static {
         PITS.put(UserIdeaEnum.NOTHING, Collections.emptyList());
-        PITS.put(UserIdeaEnum.PEE, PitBO.getPeePit());
-        PITS.put(UserIdeaEnum.STOOL, PitBO.getStoolPit());
+        PITS.put(UserIdeaEnum.PEE, PitDomain.getPeePit());
+        PITS.put(UserIdeaEnum.STOOL, PitDomain.getStoolPit());
     }
 
     /**
-     * 由用户想法获取对应的坑位类型
+     * 获取用户想法获取对应的坑位类型
      */
     public List<PitTypeEnum> getPitType() {
         return PITS.get(this);

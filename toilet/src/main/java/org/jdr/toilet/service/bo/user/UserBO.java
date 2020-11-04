@@ -1,4 +1,4 @@
-package org.jdr.toilet.service.bo;
+package org.jdr.toilet.service.bo.user;
 
 import lombok.Data;
 

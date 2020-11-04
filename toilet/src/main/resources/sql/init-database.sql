@@ -25,10 +25,12 @@ CREATE TABLE t_toilet_toilet
   `create_date`   DATETIME                        NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_date`   DATETIME                        NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
   `is_delete`     TINYINT(2)                      NOT NULL DEFAULT 0 COMMENT '逻辑删除；0=未删除，1=已删除',
+  `name`          VARCHAR(20)                     NOT NULL DEFAULT '' COMMENT '厕所姓名',
   `type`          TINYINT(2)                      NOT NULL DEFAULT 1 COMMENT '厕所类型；0=男厕所，1=女厕所',
   `floor`         INTEGER                         NOT NULL DEFAULT -1 COMMENT '厕所楼层',
   `admin_user_id` BIGINT(20)                      NOT NULL DEFAULT -1 COMMENT '管理人id',
-  `status`        TINYINT(2)                      NOT NULL DEFAULT 0 COMMENT '厕所状态；0=正常运行，1=维修中'
+  `status`        TINYINT(2)                      NOT NULL DEFAULT 0 COMMENT '厕所状态；0=正常运行，1=维修中',
+  `location`      VARCHAR(20)                     NOT NULL DEFAULT '' COMMENT '厕所位置；用经纬度表示。如30.4185:120.5161表示北纬30°4185′，东经120°5161′'
 ) ENGINE = INNODB
   DEFAULT CHARSET = UTF8MB4 COMMENT '厕所表';
 

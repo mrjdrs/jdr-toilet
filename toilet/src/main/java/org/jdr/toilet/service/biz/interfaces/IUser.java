@@ -1,12 +1,11 @@
 package org.jdr.toilet.service.biz.interfaces;
 
 import org.jdr.toilet.common.enums.pit.PitTypeEnum;
-import org.jdr.toilet.entity.Toilet;
-import org.jdr.toilet.service.bo.PaperTowelBO;
+import org.jdr.toilet.common.enums.user.UserIdeaEnum;
 import org.jdr.toilet.service.bo.PitBO;
-import org.jdr.toilet.service.bo.WashBasinBO;
-
-import java.util.List;
+import org.jdr.toilet.service.bo.user.ShowNearbyToiletsBO;
+import org.jdr.toilet.service.bo.user.UserRegisterBO;
+import org.springframework.data.geo.Point;
 
 /**
  * 上厕所的小伙伴接口
@@ -17,52 +16,32 @@ import java.util.List;
 public interface IUser {
 
     /**
-     * 产生了上厕所的想法（大便、小便）
-     * 产生的想法是随机的，有具体想法则往后走，无则结束
+     * 注册
      *
-     * @return 满足条件的坑位类型
+     * @param bo 用户注册业务对象
      */
-    List<PitTypeEnum> generateIdea();
+    void register(UserRegisterBO bo);
 
     /**
-     * 找到与想法对应的厕所，大便池可兼容小便池
+     * 找到用户想法对应的可用坑位
      *
-     * @param pitTypes 需要的坑位类型
+     * @param userIdea 用户需要上厕所的类型（如大便、小便等）
+     * @param pitType  用户所需坑位类型（如马桶、蹲坑等），若传入类型为null则标识未选择，不过滤结果
+     *                 如用户选择大便，会得出蹲坑和马桶，但用户又不想用马桶，所以pitType就需要指定马桶
      * @return 可用的坑位列表
      */
-    List<Toilet> findToilet(List<PitTypeEnum> pitTypes);
+    ShowNearbyToiletsBO findToilet(UserIdeaEnum userIdea, PitTypeEnum pitType, String token);
 
     /**
-     * 用户行为的决定人是自己，不一定每个都会锁。
+     * 得到当前定位
      */
-    void lockTheDoor(PitBO pit);
+    Point currentLocation();
 
     /**
      * 单纯的上厕所
+     *
+     * @param pit 坑位业务层
      */
     void restroom(PitBO pit);
-
-    /**
-     * 擦屁股
-     *
-     * @param paperTowel 擦屁股的纸巾
-     * @return true=擦屁股成功，false=擦屁股失败
-     */
-    boolean wipeButt(PaperTowelBO paperTowel);
-
-    /**
-     * 冲厕所
-     *
-     * @return true=冲厕所成功，false=冲厕所失败
-     */
-    boolean flushTheToilet();
-
-    /**
-     * 洗手（行为的决定人是自己，步骤不一定都会执行）
-     *
-     * @param washBasinBo 具体哪个洗手台
-     * @return true=洗了手，false=没洗手
-     */
-    boolean handwashing(WashBasinBO washBasinBo);
 
 }

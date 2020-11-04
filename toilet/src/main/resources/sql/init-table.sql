@@ -13,11 +13,11 @@ INSERT INTO t_toilet_user(name, sex, mobile, type, status)
 ##### init t_toilet_user #####
 
 ##### init t_toilet_toilet #####
-INSERT INTO t_toilet_toilet(type, floor, admin_user_id, status)
-  VALUE (0, 1, 8, 0),
-  (0, 2, 8, 0),
-  (1, 1, 7, 0),
-  (1, 2, 7, 0);
+INSERT INTO t_toilet_toilet(name, type, floor, admin_user_id, status, location)
+  VALUE ('厕所1号', 0, 1, 8, 0, '120.516131:30.418245'),
+  ('厕所2号', 0, 2, 8, 0, '120.517141:30.417255'),
+  ('厕所3号', 1, 1, 7, 0, '120.518151:30.415265'),
+  ('厕所4号', 1, 2, 7, 0, '120.519161:30.414275');
 ##### init t_toilet_toilet #####
 
 ##### init t_toilet_pit #####

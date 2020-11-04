@@ -1,17 +1,22 @@
 package org.jdr.toilet;
 
 import lombok.extern.slf4j.Slf4j;
-import net.dreamlu.mica.core.utils.$;
-import org.jdr.toilet.common.enums.pit.PitTypeEnum;
-import org.jdr.toilet.entity.Toilet;
-import org.jdr.toilet.service.biz.interfaces.IUser;
+import org.jdr.toilet.repository.ToiletRepoService;
+import org.jdr.toilet.service.biz.cache.ToiletLocationCache;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResult;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.geo.Metrics;
+import org.springframework.data.geo.Point;
+import org.springframework.data.redis.connection.RedisGeoCommands;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Collections;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -20,23 +25,23 @@ import java.util.List;
 public class UserTests {
 
     @Autowired
-    private IUser user;
+    private ToiletRepoService toiletRepoService;
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
     @Test
-    public void testGenerateIdea() {
-        List<PitTypeEnum> pitTypes = user.generateIdea();
-        pitTypes.forEach(item -> System.out.println(item.getDesc()));
-    }
-
-    @Test
-    public void findToilet() {
-//        List<PitTypeEnum> pitTypeEnums = user.generateIdea();
-//        List<Toilet> toilet = user.findToilet(pitTypeEnums);
-//        log.info($.toJson(toilet));
-
-        List<PitTypeEnum> pitTypeEnums = Collections.singletonList(PitTypeEnum.AUTO_SQUAT);
-        List<Toilet> toilet = user.findToilet(pitTypeEnums);
-        log.info($.toJson(toilet));
+    public void test() {
+        Point point = new Point(120.516141, 30.418255);
+        Distance distance = new Distance(3, RedisGeoCommands.DistanceUnit.KILOMETERS);
+        Circle circle = new Circle(point, distance);
+        RedisGeoCommands.GeoRadiusCommandArgs args = RedisGeoCommands.GeoRadiusCommandArgs.newGeoRadiusArgs()
+                .includeDistance().includeCoordinates();
+        GeoResults<RedisGeoCommands.GeoLocation<String>> radius = redisTemplate.opsForGeo().radius(
+                ToiletLocationCache.LOCATION_KEY, circle, args);
+        List<GeoResult<RedisGeoCommands.GeoLocation<String>>> content = radius.getContent();
+        content.forEach(item -> {
+            System.out.println(item.getContent().getName() + " > " + item.getDistance().getValue());
+        });
     }
 
 }

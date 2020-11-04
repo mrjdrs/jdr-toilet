@@ -1,10 +1,11 @@
 package org.jdr.toilet.repository;
 
-import org.jdr.toilet.entity.Toilet;
 import lombok.AllArgsConstructor;
+import org.jdr.toilet.entity.Toilet;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +25,20 @@ public class ToiletRepoService {
      */
     public List<Toilet> findAll() {
         return repository.findAll().stream().filter(item -> !item.getIsDelete()).collect(Collectors.toList());
+    }
+
+    /**
+     * 根据id查找可用的厕所
+     */
+    public Toilet findById(Long id) {
+        Optional<Toilet> result = repository.findById(id);
+        if (result.isPresent()) {
+            Toilet toilet = result.get();
+            if (toilet.getIsDelete()) {
+                return toilet;
+            }
+        }
+        return null;
     }
 
 }
