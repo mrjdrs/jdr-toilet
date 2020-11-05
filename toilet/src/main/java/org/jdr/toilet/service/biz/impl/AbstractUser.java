@@ -68,6 +68,7 @@ public abstract class AbstractUser implements IUser {
         List<Toilet> nearbyToilet = getNearbyToilet(nearbyToiletLocation, user);
         List<Pit> pits = userNeedPit(userIdea, pitType, nearbyToilet);
 
+        // todo
         List<ToiletBO> toiletBoList = new ArrayList<>();
         ToiletBO toiletBo = new ToiletBO();
         toiletBo.setToiletName("");
