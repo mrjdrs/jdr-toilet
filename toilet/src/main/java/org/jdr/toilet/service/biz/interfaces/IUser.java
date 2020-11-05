@@ -1,7 +1,6 @@
 package org.jdr.toilet.service.biz.interfaces;
 
 import org.jdr.toilet.common.enums.pit.PitTypeEnum;
-import org.jdr.toilet.common.enums.user.UserIdeaEnum;
 import org.jdr.toilet.service.bo.PitBO;
 import org.jdr.toilet.service.bo.user.ShowNearbyToiletsBO;
 import org.jdr.toilet.service.bo.user.UserRegisterBO;
@@ -25,12 +24,11 @@ public interface IUser {
     /**
      * 找到用户想法对应的可用坑位
      *
-     * @param userIdea 用户需要上厕所的类型（如大便、小便等）
-     * @param pitType  用户所需坑位类型（如马桶、蹲坑等），若传入类型为null则标识未选择，不过滤结果
-     *                 如用户选择大便，会得出蹲坑和马桶，但用户又不想用马桶，所以pitType就需要指定马桶
+     * @param needPitType 用户所需坑位类型（如马桶、蹲坑、便池等），若传入类型为null则标识未选择，不过滤结果
+     *                    如用户选择大便，会得出蹲坑和马桶，但用户又不想用马桶，所以pitType就需要指定马桶
      * @return 可用的坑位列表
      */
-    ShowNearbyToiletsBO findToilet(UserIdeaEnum userIdea, PitTypeEnum pitType, String token);
+    ShowNearbyToiletsBO findToilet(PitTypeEnum needPitType);
 
     /**
      * 得到当前定位

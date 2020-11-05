@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 坑位类型枚举
+ *
  * @author zhoude
  * @date 2020/9/8 11:39
  */
@@ -29,17 +31,31 @@ public enum PitTypeEnum {
     ;
 
     private final int code;
-    private final String desc;
+    private final String name;
 
-    PitTypeEnum(int code, String desc) {
+    PitTypeEnum(int code, String name) {
         this.code = code;
-        this.desc = desc;
+        this.name = name;
     }
 
     public static List<Integer> convertCode(List<PitTypeEnum> pitTypes) {
         List<Integer> result = new ArrayList<>(pitTypes.size());
         pitTypes.forEach(pit -> result.add(pit.getCode()));
         return result;
+    }
+
+    public static PitTypeEnum getEnumByCode(int code) {
+        PitTypeEnum[] enums = values();
+        for (PitTypeEnum item : enums) {
+            if (item.getCode() == code) {
+                return item;
+            }
+        }
+        throw new IllegalArgumentException("code does not exist");
+    }
+
+    public static String getNameByCode(int code) {
+        return getEnumByCode(code).getName();
     }
 
 }

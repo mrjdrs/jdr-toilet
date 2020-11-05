@@ -1,9 +1,6 @@
 package org.jdr.toilet.service.bo;
 
 import lombok.Data;
-import org.jdr.toilet.entity.Pit;
-
-import java.util.List;
 
 /**
  * 坑位业务层
@@ -14,6 +11,9 @@ import java.util.List;
 @Data
 public class PitBO {
 
-
+    /**
+     * 坑位名称
+     */
+    private String pitName;
 
 }

@@ -1,6 +1,7 @@
 package org.jdr.toilet.repository;
 
 import lombok.AllArgsConstructor;
+import org.jdr.toilet.common.enums.toilet.ToiletTypeEnum;
 import org.jdr.toilet.entity.Toilet;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,14 @@ public class ToiletRepoService {
      */
     public List<Toilet> findAll() {
         return repository.findAll().stream().filter(item -> !item.getIsDelete()).collect(Collectors.toList());
+    }
+
+    /**
+     * 根据厕所类型查找可用的厕所
+     */
+    public List<Toilet> findByType(ToiletTypeEnum toiletType) {
+        return repository.findByType(toiletType.getCode()).stream()
+                .filter(item -> !item.getIsDelete()).collect(Collectors.toList());
     }
 
     /**

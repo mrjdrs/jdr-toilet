@@ -1,7 +1,7 @@
 package org.jdr.toilet.service.bo.user;
 
 import lombok.Data;
-import org.jdr.toilet.service.bo.ToiletBO;
+import org.jdr.toilet.service.bo.ToiletPitBO;
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ import java.util.List;
 @Data
 public class ShowNearbyToiletsBO {
 
-    private List<ToiletBO> toiletBo;
+    private List<ToiletPitBO> toiletPitBo;
 
 }

@@ -3,7 +3,7 @@ package org.jdr.toilet.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.StringUtils;
-import org.jdr.toilet.common.enums.user.UserSexEnum;
+import org.jdr.toilet.common.enums.user.UserGenderEnum;
 import org.jdr.toilet.common.enums.user.UserStatusEnum;
 import org.jdr.toilet.common.enums.user.UserTypeEnum;
 
@@ -31,10 +31,10 @@ public class User extends BaseEntity {
 
     /**
      * 性别
-     * {@link org.jdr.toilet.common.enums.user.UserSexEnum}
+     * {@link UserGenderEnum}
      */
     @Column(name = "sex")
-    private Integer sex = UserSexEnum.MALE.getCode();
+    private Integer sex = UserGenderEnum.MALE.getCode();
 
     /**
      * 用户手机号

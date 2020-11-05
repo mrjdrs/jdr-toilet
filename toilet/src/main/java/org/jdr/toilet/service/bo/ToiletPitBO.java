@@ -6,13 +6,13 @@ import org.jdr.toilet.entity.Pit;
 import java.util.List;
 
 /**
- * 厕所业务对象
+ * 厕所中的坑位-业务对象
  *
  * @author zhoude
  * @date 2020/9/7 18:12
  */
 @Data
-public class ToiletBO {
+public class ToiletPitBO {
 
     /**
      * 厕所名称
@@ -27,6 +27,6 @@ public class ToiletBO {
     /**
      * 此厕所中用户需要的坑位
      */
-    private List<Pit> needPits;
+    private List<PitBO> needPits;
 
 }
